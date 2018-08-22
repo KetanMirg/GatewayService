@@ -1,0 +1,26 @@
+server:
+  port: 8088
+  
+spring:
+  application:
+    name: gatewayservice
+
+    
+zuul:
+  prefix: /api
+  routes:
+    paymentservice: 
+      path: /paymentservice/**
+      url: http://localhost:8081
+      
+    userservice: 
+      path: /userservice/**
+      url: http://localhost:8082
+    
+   
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url: 
+      defaultUrl: http://localhost:8088/eureka
